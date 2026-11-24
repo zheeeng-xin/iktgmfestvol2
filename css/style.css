@@ -1290,6 +1290,96 @@ body.nav-drawer-open {
   text-transform: uppercase;
 }
 
+/* Google Drive Cloud Archive Card */
+.archive-drive-card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  padding: var(--space-32);
+  margin-top: var(--space-32);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(23, 21, 27, 0.03);
+}
+
+@media (min-width: 768px) {
+  .archive-drive-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-40) var(--space-48);
+  }
+}
+
+.drive-card-content {
+  max-width: 580px;
+}
+
+.drive-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--pink-hot);
+  background-color: var(--pink-light);
+  padding: 4px var(--space-12);
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: var(--space-12);
+}
+
+.drive-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.625rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-8);
+  letter-spacing: -0.01em;
+}
+
+.drive-card-desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.drive-card-action {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  flex-shrink: 0;
+}
+
+.btn-drive {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  background-color: var(--ink);
+  color: var(--white);
+  padding: var(--space-12) var(--space-24);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.btn-drive:hover {
+  background-color: #2D2A35;
+}
+
+.drive-notice {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
 /* --------------------------------------------------------------------------
    12. Final CTA Section
    -------------------------------------------------------------------------- */

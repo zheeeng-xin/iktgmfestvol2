@@ -7,10 +7,11 @@
   'use strict';
 
   // =========================================================================
-  // Configurable Committee WhatsApp Numbers (Easily Replaceable)
+  // Configurable Committee WhatsApp Numbers & Google Drive Archive Link
   // =========================================================================
   const MERCH_WHATSAPP = "6281234567890";  // Ganti dengan nomor WhatsApp Merchandise panitia
   const SPONSOR_WHATSAPP = "6289876543210"; // Ganti dengan nomor WhatsApp Sponsorship panitia
+  const GDRIVE_ARCHIVE_URL = "https://drive.google.com/"; // Ganti dengan link folder Google Drive dokumentasi resmi panitia
 
   // =========================================================================
   // 1. Navigation & Header State
@@ -19,6 +20,11 @@
   const mobileToggle = document.getElementById('mobile-toggle');
   const mobileDrawer = document.getElementById('mobile-drawer');
   const mobileLinks = document.querySelectorAll('.mobile-nav-link, .mobile-drawer .btn');
+
+  // Sync Google Drive Archive URLs
+  document.querySelectorAll('#gdrive-archive-link, #header-gdrive-btn').forEach(el => {
+    el.setAttribute('href', GDRIVE_ARCHIVE_URL);
+  });
 
   function updateHeaderOnScroll() {
     if (!header) return;
