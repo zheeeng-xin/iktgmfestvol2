@@ -9,9 +9,9 @@
   // =========================================================================
   // Configurable Committee WhatsApp Numbers & Google Drive Archive Link
   // =========================================================================
-  const MERCH_WHATSAPP = "6281234567890";  // Ganti dengan nomor WhatsApp Merchandise panitia
-  const SPONSOR_WHATSAPP = "6289876543210"; // Ganti dengan nomor WhatsApp Sponsorship panitia
-  const GDRIVE_ARCHIVE_URL = "https://drive.google.com/"; // Ganti dengan link folder Google Drive dokumentasi resmi panitia
+  const MERCH_WHATSAPP = "62822906121256";  // nomor WhatsApp Merchandise panitia
+  const SPONSOR_WHATSAPP = "62822906121256"; // nomor WhatsApp Sponsorship panitia
+  const GDRIVE_ARCHIVE_URL = "https://drive.google.com/"; //link folder Google Drive dokumentasi resmi panitia
 
   // =========================================================================
   // 1. Navigation & Header State
