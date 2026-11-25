@@ -11,7 +11,7 @@
   // =========================================================================
   const MERCH_WHATSAPP = "6282290612156";  // nomor WhatsApp Merchandise panitia
   const SPONSOR_WHATSAPP = "6282290612156"; // nomor WhatsApp Sponsorship panitia
-  const GDRIVE_ARCHIVE_URL = "https://drive.google.com/"; //link folder Google Drive dokumentasi resmi panitia
+  const GDRIVE_ARCHIVE_URL = "https://drive.google.com/"; //  link folder Google Drive dokumentasi resmi panitia
 
   // =========================================================================
   // 1. Navigation & Header State

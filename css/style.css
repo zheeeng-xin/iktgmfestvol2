@@ -1102,12 +1102,14 @@ body.nav-drawer-open {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-32);
+  padding: 0 var(--space-8);
 }
 
 @media (min-width: 840px) {
   .sponsor-layout {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-48);
+    padding: 0;
   }
 }
 
@@ -1157,6 +1159,49 @@ body.nav-drawer-open {
   font-size: 0.875rem;
   color: var(--text-secondary);
   line-height: 1.55;
+}
+
+/* Sponsor Marquee */
+.sponsor-marquee {
+  overflow: hidden;
+  padding: var(--space-16) 0;
+  margin: var(--space-16) 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: var(--space-40);
+  animation: marqueeScroll 40s linear infinite;
+  width: max-content;
+}
+
+.sponsor-marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-logo {
+  height: 72px;
+  width: auto;
+  max-width: 180px;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.6);
+  transition: filter var(--transition-normal);
+  flex-shrink: 0;
+}
+
+.marquee-logo:hover {
+  filter: grayscale(0) opacity(1);
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-25%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }
 
 /* Sponsor Form */

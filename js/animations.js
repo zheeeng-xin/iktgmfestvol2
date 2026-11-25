@@ -266,4 +266,117 @@
     });
   }
 
+  // =========================================================================
+  // 4. Falling Petals (Scroll-Driven) - Two Layers: Behind & In Front
+  // =========================================================================
+  function initFallingPetals() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    // Layer 1: Behind content (z-index: 0)
+    const backContainer = document.createElement('div');
+    backContainer.className = 'falling-petals-back';
+    backContainer.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    `;
+    document.body.insertBefore(backContainer, document.body.firstChild);
+
+    // Layer 2: In front of content (z-index: 1000)
+    const frontContainer = document.createElement('div');
+    frontContainer.className = 'falling-petals-front';
+    frontContainer.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+      overflow: hidden;
+    `;
+    document.body.appendChild(frontContainer);
+
+    const BACK_COUNT = 20;
+    const FRONT_COUNT = 4;
+    const allPetals = [];
+
+    function createPetals(count, container, baseZ) {
+      const petals = [];
+      for (let i = 0; i < count; i++) {
+        const petal = document.createElement('img');
+        petal.src = 'assets/graphics/petal.svg';
+        petal.alt = '';
+        const size = 16 + Math.random() * 22;
+        const opacity = 0.25 + Math.random() * 0.3;
+        petal.style.cssText = `
+          position: absolute;
+          width: ${size}px;
+          height: auto;
+          opacity: ${opacity};
+          transform-origin: center center;
+          will-change: transform, opacity;
+        `;
+        container.appendChild(petal);
+
+        petals.push({
+          el: petal,
+          startX: Math.random() * window.innerWidth,
+          delay: Math.random() * 3,
+          sway: 40 + Math.random() * 120,
+          rotationSpeed: 200 + Math.random() * 600,
+          size,
+          baseZ,
+        });
+      }
+      return petals;
+    }
+
+    allPetals.push(...createPetals(BACK_COUNT, backContainer, 0));
+    allPetals.push(...createPetals(FRONT_COUNT, frontContainer, 1000));
+
+    function animatePetals() {
+      const scrollY = window.lenis ? window.lenis.scroll : window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(scrollY / maxScroll, 1);
+
+      allPetals.forEach((p, i) => {
+        const easedProgress = Math.min((progress + p.delay * 0.15) % 1, 1);
+        const y = easedProgress * (window.innerHeight + p.size + 120);
+        const x = p.startX + Math.sin(easedProgress * Math.PI * 3.5 + i * 0.8) * p.sway * easedProgress;
+        const rotation = easedProgress * p.rotationSpeed;
+
+        gsap.set(p.el, {
+          x: x - p.size / 2,
+          y: y - p.size / 2,
+          rotation: rotation,
+        });
+      });
+
+      requestAnimationFrame(animatePetals);
+    }
+
+    animatePetals();
+
+    window.addEventListener('resize', () => {
+      allPetals.forEach(p => {
+        p.startX = Math.random() * window.innerWidth;
+      });
+    });
+  }
+
+  // Initialize after Lenis is ready
+  if (!prefersReducedMotion) {
+    if (typeof Lenis !== 'undefined') {
+      setTimeout(initFallingPetals, 100);
+    } else {
+      document.addEventListener('DOMContentLoaded', initFallingPetals);
+    }
+  }
+
 })();
